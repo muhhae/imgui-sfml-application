@@ -5,16 +5,18 @@ workspace "ImguiApp"
     configurations { "Debug", "Release" }
 
 SRCDIR = "src" --Source Code Directory
-BUILDDIR = "build" --Build Directory
-OBJDIR = "%{BUILDDIR}/obj" --Obj Directory
+BUILDDIR = "bin" --Build Directory
+OBJDIR = "obj" --Obj Directory
 
 
 project "ImguiApp"
-    language "C++" --Languange
+    language "C++" 
 
-    buildoptions {"-std=c++23", "-Wall"} --CXXFLAGS
-    linkoptions {"-lsfml-graphics -lsfml-window -lsfml-system"} --LDFLAGS
-    links {"opengl32"}
+    cppdialect "C++latest"
+    
+    links {
+        "opengl32","sfml-audio", "sfml-graphics", "sfml-network", "sfml-system", "sfml-window"
+    }
 
     targetdir "%{BUILDDIR}/%{cfg.buildcfg}" 
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
@@ -27,6 +29,7 @@ project "ImguiApp"
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
         "%{SRCDIR}/**.cpp",
+        
         "include/**.cpp",
         "include/**.h"
     }
