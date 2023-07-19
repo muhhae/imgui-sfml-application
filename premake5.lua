@@ -15,6 +15,10 @@ project "ImguiApp"
     cppdialect "C++latest"
     
     links {
+        "include/libImguiSFML/Libs/ImguiSFML",
+    }
+
+    links {
         "opengl32","sfml-audio", "sfml-graphics", "sfml-network", "sfml-system", "sfml-window"
     }
 
@@ -22,16 +26,16 @@ project "ImguiApp"
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
 
     includedirs {
-        "include/**"
+        "include/libImguiSFML/header"
     }
 
     files {
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
-        "%{SRCDIR}/**.cpp",
+        "%{SRCDIR}/**.cpp"
         
-        "include/**.cpp",
-        "include/**.h"
+        -- "include/**.cpp",
+        -- "include/**.h"
     }
 
     filter "configurations:Debug"
